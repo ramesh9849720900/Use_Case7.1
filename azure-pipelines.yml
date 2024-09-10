@@ -1,0 +1,29 @@
+trigger:
+  branches:
+    include:
+      - main
+
+variables:
+  azureSubscription: 'Use_Case7' # Name of the Azure service connection
+  resourceGroupName: 'myresourcegroup'
+  appServicePlanName: 'ASP-myresourcegroup-b87a'
+  webAppName: 'dot-net-webapp'
+  location: 'East US'
+  vmImageName: 'ubuntu-latest'
+
+stages:
+  - stage: Provision
+    displayName: Provision Azure Resources
+    jobs:
+      - job: ProvisionJob
+        pool:
+          vmImage: $(vmImageName)
+        steps:
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: $(azureSubscription)
+              ScriptPath: '$(Build.SourcesDirectory)/provision-azure-webapp.ps1'
+              ScriptArguments: '-resourceGroupName $(resourceGroupName) -appServicePlanName $(appServicePlanName) -webAppName $(webAppName) -location $(location)'
+              azurePowerShellVersion: 'LatestVersion'
+              ScriptType: 'FilePath'
+            displayName: 'Provision Azure Web App with PowerShell'
