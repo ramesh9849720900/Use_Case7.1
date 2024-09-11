@@ -7,8 +7,8 @@ pool:
 variables:
   azureSubscription: 'Use_Case7'  # Name of your Azure DevOps service connection
   resourceGroupName: 'myresourcegroup'           # Resource group name
-  location: 'EastUS'                             # Azure region
-  vmName: 'myVM'                                 # Name of the VM
+  location: 'East US'                             # Azure region
+  vmName: 'myapp'                                 # Name of the VM
   vmSize: 'Standard_B1s'                         # VM size
   adminUsername: 'rao900702@gmail.com'                     # Admin username for VM
   adminPassword: 'VRams@#9849'                 # Admin password for VM (Use secret storage in real projects)
